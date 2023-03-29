@@ -1,0 +1,1128 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/icon1.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Django_Jungle">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="C大程笔记链表链表的定义 存储一批数据：  类型相同 数目不固定、可长可短、动态可变 连续有次序（逻辑上） 在内存中的位置可能是混乱的   用链表存储多项式 1234567struct PolyNode&amp;#123;	int coef&#x2F;&#x2F;系数    int expon&#x2F;&#x2F;指数    struct PolyNode* link&#x2F;&#x2F;链表指针&amp;#125;  链表的分类：单向链表、双向链表  结构的递归定义">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C大程笔记（part I）">
+<meta property="og:url" content="http://jiangguanyu.top/2023/03/29/C%E5%A4%A7%E7%A8%8B%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Django想乡的乡">
+<meta property="og:description" content="C大程笔记链表链表的定义 存储一批数据：  类型相同 数目不固定、可长可短、动态可变 连续有次序（逻辑上） 在内存中的位置可能是混乱的   用链表存储多项式 1234567struct PolyNode&amp;#123;	int coef&#x2F;&#x2F;系数    int expon&#x2F;&#x2F;指数    struct PolyNode* link&#x2F;&#x2F;链表指针&amp;#125;  链表的分类：单向链表、双向链表  结构的递归定义">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="c:\Users\%E5%B0%8F%E4%BD%9B\AppData\Roaming\Typora\typora-user-images\image-20230328114354650.png">
+<meta property="og:image" content="c:\Users\%E5%B0%8F%E4%BD%9B\AppData\Roaming\Typora\typora-user-images\image-20230328113353092.png">
+<meta property="og:image" content="c:\Users\%E5%B0%8F%E4%BD%9B\AppData\Roaming\Typora\typora-user-images\image-20230329151647283.png">
+<meta property="og:image" content="c:\Users\%E5%B0%8F%E4%BD%9B\AppData\Roaming\Typora\typora-user-images\image-20230329163559336.png">
+<meta property="og:image" content="c:\Users\%E5%B0%8F%E4%BD%9B\AppData\Roaming\Typora\typora-user-images\image-20230329163733370.png">
+<meta property="og:image" content="c:\Users\%E5%B0%8F%E4%BD%9B\AppData\Roaming\Typora\typora-user-images\image-20230329163951295.png">
+<meta property="og:image" content="c:\Users\%E5%B0%8F%E4%BD%9B\AppData\Roaming\Typora\typora-user-images\image-20230329163951295.png">
+<meta property="article:published_time" content="2023-03-28T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-29T09:36:54.067Z">
+<meta property="article:author" content="Django_Jungle">
+<meta property="article:tag" content="C">
+<meta property="article:tag" content="Note">
+<meta property="article:tag" content="In-class">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="c:\Users\%E5%B0%8F%E4%BD%9B\AppData\Roaming\Typora\typora-user-images\image-20230328114354650.png">
+  
+  
+  
+  <title>C大程笔记（part I） - Django想乡的乡</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"jiangguanyu.top","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Django想乡的乡</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="C大程笔记（part I）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-03-29 00:00" pubdate>
+          2023年3月29日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          11k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          94 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">C大程笔记（part I）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="C大程笔记"><a href="#C大程笔记" class="headerlink" title="C大程笔记"></a>C大程笔记</h1><h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><h3 id="链表的定义"><a href="#链表的定义" class="headerlink" title="链表的定义"></a>链表的定义</h3><ul>
+<li><p>存储一批数据：</p>
+<ul>
+<li>类型相同</li>
+<li>数目不固定、可长可短、动态可变</li>
+<li>连续有次序（逻辑上）</li>
+<li>在内存中的位置可能是混乱的</li>
+</ul>
+</li>
+<li><p>用链表存储多项式</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">PolyNode</span></span><br><span class="hljs-class">&#123;</span><br>	<span class="hljs-type">int</span> coef<span class="hljs-comment">//系数</span><br>    <span class="hljs-type">int</span> expon<span class="hljs-comment">//指数</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">PolyNode</span>* <span class="hljs-title">link</span>//链表指针</span><br><span class="hljs-class">&#125;</span><br><span class="hljs-class"></span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>链表的分类：单向链表、双向链表</p>
+</li>
+<li><p>结构的递归定义：在定义结构的同时，使用它定义了一个指针成员</p>
+<p>能且只能使用结构的指针类型进行递归定义因为指针所占的内存大小是固定的（4个字节）</p>
+</li>
+</ul>
+<h3 id="内存类函数相关补充（用于结点申请）"><a href="#内存类函数相关补充（用于结点申请）" class="headerlink" title="内存类函数相关补充（用于结点申请）"></a>内存类函数相关补充（用于结点申请）</h3><ul>
+<li><p>malloc</p>
+</li>
+<li><p>使用内存申请函数 – malloc，在内存的动态存储区中申请一块连续的内存空间，作为链表结点</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span>* <span class="hljs-title function_">malloc</span><span class="hljs-params">(<span class="hljs-type">unsigned</span> size)</span>;<br><span class="hljs-comment">/*参数 size 指定所申请的内存大小（字节数）</span><br><span class="hljs-comment">返回值类型：void *，通用指针 / 无类型指针 / 内存地址</span><br><span class="hljs-comment">若申请成功，则返回所分配内存的起始地址</span><br><span class="hljs-comment">需要转换到特定的指针类型，便于使用</span><br><span class="hljs-comment">若不成功，则返回NULL（地址值为0的非法指针）*/</span><br>    <br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">student</span>* <span class="hljs-title">p</span>;</span><br>p = (<span class="hljs-keyword">struct</span> student *)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">struct</span> student) );<br><span class="hljs-comment">//调用malloc时，用 sizeof 计算存储块大小 - 注意：虽然内存块是动态分配的，但一旦分配成功后，它的大小也是确定的，不要越界使用 </span><br><br><span class="hljs-keyword">if</span>( p==<span class="hljs-literal">NULL</span> ) &#123;<br>   <span class="hljs-comment">//申请失败了，进行相应处理</span><br>&#125; <br><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>free</p>
+</li>
+<li><p>当动态申请的内存块不再需要时，要及时释放它。调用内存释放函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">free</span><span class="hljs-params">(<span class="hljs-type">void</span> *ptr)</span>;<br><span class="hljs-comment">/*释放以ptr为起始地址的内存块</span><br><span class="hljs-comment">该内存块必须是之前由动态申请得到的</span><br><span class="hljs-comment">要完全释放，不能是申请得到的一部分*/</span><br><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>calloc</p>
+</li>
+<li><p>功 能：申请分配 n 个长度为 size 的连续空间也就是：分配一个长度为 n * size 的连续空间</p>
+<p>返回值：如果成功，返回指向分配起始地址的指针；如果失败，返回NULL。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> * <span class="hljs-title function_">calloc</span><span class="hljs-params">(<span class="hljs-type">size_t</span> n, <span class="hljs-type">size_t</span> size)</span>；<br>    <br></code></pre></td></tr></table></figure>
+</li>
+<li><p>reallco（先了解）</p>
+</li>
+<li><p>realloc是在空间不足时，对其空间进行再次扩容；realloc是在空间不足时，对其空间进行再次扩容</p>
+</li>
+<li><pre><code class="c">void* realloc (void* ptr, size_t size); 
+int *pc = (int *) realloc (p, sizeof(int) *n);
+
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs clean"><br>### 单向链表常用操作<br><br>#### 链表的建立<br><br>* 重要元素：<br><br>  用一个指针指向链表的第一个结点（头节点）<br><br>  ~~~c<br>  struct stud_node *head;<br>  <br></code></pre></td></tr></table></figure>
+
+建立第一个链表
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c">head = <span class="hljs-literal">NULL</span>；<span class="hljs-comment">//建立了一个空链表（空链表是最简单的合法链表）</span><br>    <br></code></pre></td></tr></table></figure>
+
+链表的尾指针
+
+指向链表的末尾节点
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">stud_node</span>* <span class="hljs-title">tail</span>;</span><br><span class="hljs-comment">//当链表为空时：tail 与 head 均为 NULL;当链表只有一个结点：tail 与 head 均指向该节点;</span><br><br></code></pre></td></tr></table></figure>
+</code></pre>
+</li>
+<li><p>看一个栗子：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* 链表结点结构 */</span><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">stud_node</span></span><br><span class="hljs-class">&#123;</span><br>    <span class="hljs-type">int</span>    num;             <span class="hljs-comment">// 学号</span><br>    <span class="hljs-type">char</span>   name[<span class="hljs-number">20</span>];        <span class="hljs-comment">// 姓名</span><br>    <span class="hljs-type">int</span>    score;           <span class="hljs-comment">// 成绩</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">stud_node</span> *<span class="hljs-title">next</span>;</span> <span class="hljs-comment">// 链表指针</span><br>&#125;;<br><br><span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%s%d&quot;</span>, &amp;num, name, &amp;score);<br>    <span class="hljs-keyword">while</span>( num != <span class="hljs-number">0</span> ) &#123;  <br>        <span class="hljs-comment">// 学号为0，表示结束</span><br>        p = (<span class="hljs-keyword">struct</span> stud_node *) <span class="hljs-built_in">malloc</span>(size); <span class="hljs-comment">// 申请结点</span><br>        p-&gt;num = num;    <span class="hljs-comment">// 将学生信息存入结点</span><br>        <span class="hljs-built_in">strcpy</span>(p-&gt;name, name);   <br>        p-&gt;score = score; <br>        p-&gt;next = <span class="hljs-literal">NULL</span>;  <span class="hljs-comment">// 将该结点链表指针清零 </span><br><br>		<span class="hljs-comment">// 将结点p添加到链表末尾</span><br>        <span class="hljs-keyword">if</span>(head == <span class="hljs-literal">NULL</span>) <span class="hljs-comment">// 若原来是空链表</span><br>            head = p;<br>        <span class="hljs-keyword">else</span>  <br>            tail-&gt;next = p; <span class="hljs-comment">// 将结点p添加到链表末尾</span><br>        tail = p; <span class="hljs-comment">// 更新链表的尾指针</span><br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%s%d&quot;</span>, &amp;num, name, &amp;score);<br> <br></code></pre></td></tr></table></figure>
+
+<p>以上为将结点p添加到链表的尾部，若要加到表头位置：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>(head = <span class="hljs-literal">NULL</span>) <span class="hljs-comment">// 若原来是空链表</span><br>    tail = p;<br><span class="hljs-keyword">else</span> <br>    p-&gt;next = head; <span class="hljs-comment">// 将结点p插入导表头前面</span><br>head = p; <span class="hljs-comment">//更新链表的头文件</span><br><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="链表的遍历（打印）"><a href="#链表的遍历（打印）" class="headerlink" title="链表的遍历（打印）"></a>链表的遍历（打印）</h4><ul>
+<li><p>继续上面的例子</p>
+<p>假设指针p指向一个学生结点，那么学号是：p-&gt;num 姓名是：p-&gt;name 成绩是：p-&gt;score 下一个学生是：p-&gt;next</p>
+<p>如果p-&gt;next&#x3D;&#x3D;NULL,那么：p是最后一个结点，遍历结束</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">Print_Stu_Doc</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> stud_node * head)</span> <br>&#123; <br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">stud_node</span> * <span class="hljs-title">p</span>;</span><br>    <span class="hljs-keyword">if</span>(head == <span class="hljs-literal">NULL</span>)&#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\nNo Records\n&quot;</span>);<br>        <span class="hljs-keyword">return</span>;<br>     &#125;<br>     <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\nThe Students&#x27; Records Are: \n&quot;</span>);<br>     <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;    Num   Name   Score\n&quot;</span>);<br>     <span class="hljs-keyword">for</span>( p = head; p!=<span class="hljs-literal">NULL</span>; p = p-&gt;next )<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%8d %20s  %6d \n&quot;</span>, p-&gt;num, p-&gt;name, <br>	 	p-&gt;score);<br>&#125;<br><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="插入结点"><a href="#插入结点" class="headerlink" title="插入结点"></a>插入结点</h4><ul>
+<li><p><strong>先连后断</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c">s-&gt;next = ptr-&gt;next;<br>ptr-&gt;next = s;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="删除结点"><a href="#删除结点" class="headerlink" title="删除结点"></a>删除结点</h4><ul>
+<li><p><strong>先连后删</strong>：删除ptr1后的结点：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c">del = ptr1-&gt;next;<br>ptr-&gt;next-&gt;next = del-&gt;next;<span class="hljs-comment">//建立新链接</span><br><span class="hljs-built_in">free</span>(del);<span class="hljs-comment">//释放结点内存</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="通用链表的实现"><a href="#通用链表的实现" class="headerlink" title="通用链表的实现"></a>通用链表的实现</h3><ul>
+<li><p>维护一个链表,关键在于维护链表的“链”指针</p>
+<ul>
+<li>无论实际存储的数据是什么样的，对“链”的操作都是一样的。</li>
+</ul>
+</li>
+<li><p>通用的链表 – 将实际的数据用一个<strong>void</strong>*指针记录</p>
+<p>在处理数据时，再将<strong>dataptr</strong>转换为实际的类型指针（用户自己知道）</p>
+</li>
+</ul>
+<h3 id="一个小项目"><a href="#一个小项目" class="headerlink" title="一个小项目"></a>一个小项目</h3><ul>
+<li>编写程序：读入两个多项式，计算并输出他们的和、差和乘积。要求基于课件中提到的三个表示方法，分别实现3个方法。多项式系数为整数最后的结果中不保留系数为0的项输出结果按照幂次递减排列。</li>
+</ul>
+<hr>
+<h2 id="指针进阶1"><a href="#指针进阶1" class="headerlink" title="指针进阶1"></a>指针进阶1</h2><blockquote>
+<p>本章要点：指针数组和指向指针的指针是如何被定义和使用的？指针如何作为函数的返回值？指向函数的指针的意义是什么？</p>
+</blockquote>
+<h3 id="指针回顾"><a href="#指针回顾" class="headerlink" title="指针回顾"></a>指针回顾</h3><ul>
+<li><p>指针是一种新的数据类型</p>
+<ul>
+<li><p>存放变量的地址</p>
+</li>
+<li><p>存放数据单元的地址</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> x, *p;<br>p = &amp;x;<span class="hljs-comment">//x为取地址运算符,给指针赋值</span><br>*p = <span class="hljs-number">3</span>;<span class="hljs-comment">//访问指针所指向的变量</span><br>x = *p;<br><br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>指针作为函数参数，传递结果，改变主调函数的变量值</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">swap</span><span class="hljs-params">(<span class="hljs-type">int</span> *x, <span class="hljs-type">int</span> *y)</span><br>&#123;<br>   <span class="hljs-type">int</span> temp = *x;<br>   *x = *y;<br>   *y = temp;<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>   <span class="hljs-type">int</span> a=<span class="hljs-number">1</span>, b=<span class="hljs-number">2</span>;<br>   swap(&amp;a, &amp;b);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>指针与数组</p>
+<ul>
+<li><p>数组名实际上代表了一个指针，指向数组的首元素</p>
+</li>
+<li><p>数组名是一个指针常量，不能改变它的地址值</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> a[<span class="hljs-number">100</span>], c， *p;<br>a = &amp; c; <span class="hljs-comment">/*不可以*/</span><br>p = a; <span class="hljs-comment">/*可以*/</span><br><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>指针的加法：指针 + 整数n； 结果：将指针往后移动n个单元； 即：地址值增加了n * sizeof(数据类型)</p>
+</li>
+</ul>
+</li>
+<li><p>指针比较与减法</p>
+<ul>
+<li><p>两指针可以比较大小，其结果等价于比较它们地址的大小； 两同类型指针可相减，其结果等于它们之间所能存储的数据个数</p>
+<p>即：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//			  p地址-q地址</span><br><span class="hljs-comment">//    p–q = ----------------</span><br><span class="hljs-comment">//            sizeof(类型）</span><br><span class="hljs-type">double</span> a[<span class="hljs-number">10</span>], *p, *q;<br>p = a; q = &amp;a[<span class="hljs-number">4</span>];<br>q - p = <span class="hljs-number">4</span>;<br>(<span class="hljs-type">int</span>)q - (<span class="hljs-type">int</span>)p = <span class="hljs-number">32</span>;<br><br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="指针与数组"><a href="#指针与数组" class="headerlink" title="指针与数组"></a>指针与数组</h3><ul>
+<li><p><strong>int a[100];</strong></p>
+<p>指针a指向首元素a[0];</p>
+<p>指针a+i指向元素a[i];</p>
+<p>表达式a[i]等价于   *(a+i)</p>
+</li>
+<li><p>数组元素的指针作为函数参数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">bubble</span><span class="hljs-params">(<span class="hljs-type">int</span> *a, <span class="hljs-type">int</span> n)</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">bubble</span><span class="hljs-params">(<span class="hljs-type">int</span> a[ ], <span class="hljs-type">int</span> n)</span>;<br><span class="hljs-type">int</span> <span class="hljs-title function_">sum</span><span class="hljs-params">(<span class="hljs-type">int</span> a[], <span class="hljs-type">int</span> n)</span>; <br><br>假设有<span class="hljs-type">int</span> b[<span class="hljs-number">100</span>]; 那么：<br>sum(b, <span class="hljs-number">100</span>)的结果是 b[<span class="hljs-number">0</span>]+b[<span class="hljs-number">1</span>]+…+b[<span class="hljs-number">99</span>]<br>sum(b, <span class="hljs-number">88</span>) 的结果是 b[<span class="hljs-number">0</span>]+b[<span class="hljs-number">1</span>]+…+b[<span class="hljs-number">87</span>]<br>sum(b+<span class="hljs-number">7</span>,<span class="hljs-number">9</span>) 的结果是 b[<span class="hljs-number">7</span>]+b[<span class="hljs-number">8</span>]+…+b[<span class="hljs-number">15</span>]<br>sum(&amp;b[<span class="hljs-number">7</span>],<span class="hljs-number">9</span>) 的结果也是 b[<span class="hljs-number">7</span>]+b[<span class="hljs-number">8</span>]+…+b[<span class="hljs-number">15</span>]<br>    <br></code></pre></td></tr></table></figure>
+</li>
+<li><p>字符串和字符指针</p>
+<ul>
+<li><p>**char sa[] &#x3D; “array”; ** </p>
+<p>定义了一个数组，并被初始化为 <strong>array\0</strong></p>
+<p>*<em>char <em>sp &#x3D; “point”;</em></em></p>
+<p>定义了一个指针sp，而非数组。指针指向了一个字符串常量，而该字符串常量存储在何处呢？ - <strong>Somewhere decided by the system.</strong></p>
+</li>
+</ul>
+</li>
+<li><p>常用的字符串处理函数：</p>
+<ul>
+<li><p>strcpy(char *s, char *t)</p>
+</li>
+<li><p>strcat(char *s, char *t)</p>
+</li>
+<li><p>strcmp(char *s, char *t)</p>
+</li>
+<li><p>strlen(char *s)</p>
+</li>
+<li><p>gets&#x2F;scanf ： gets函数读入一整行(包括空格），直到<strong>回车为止</strong>；scanf函数读入字符，直到<strong>空格和回车为止</strong></p>
+</li>
+<li><p>puts&#x2F;printf：puts函数输出后会<strong>自动换行</strong></p>
+</li>
+<li><p>sscanf&#x2F;sprintf：从字符串中读入数据将数据，打印输出到字符串，例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">char</span> t[<span class="hljs-number">256</span>] = “<span class="hljs-number">1234</span>”;<br><span class="hljs-built_in">sscanf</span>(t, “%d”, &amp;x);<br><span class="hljs-built_in">sprintf</span>(t, “value = %d”,x);<br><br><span class="hljs-comment">/* sscanf/sprintf应用举例</span><br><span class="hljs-comment"> - libgraphics simpleGUI demo */</span><br><span class="hljs-type">char</span> s[<span class="hljs-number">256</span>],t[<span class="hljs-number">256</span>];<br><span class="hljs-type">double</span> value; <span class="hljs-keyword">if</span>( textbox(GenUIID(<span class="hljs-number">0</span>),x,y,w,h,s,<span class="hljs-keyword">sizeof</span>(s)) )<br>&#123;<br>    <span class="hljs-built_in">sscanf</span>(numstr,<span class="hljs-string">&quot;%lf&quot;</span>,&amp;value);<br>    <span class="hljs-built_in">sprintf</span>(t, <span class="hljs-string">&quot;input value is: %f&quot;</span>, value);<br>&#125;<br><br><br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>指针数组</p>
+<ul>
+<li><p>首先它是一个数组；其次，它的元素是指针</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">char</span> * color[<span class="hljs-number">5</span>] = &#123; “red”, “blue”, “yellow”, “green”, “black” &#125;;<br><span class="hljs-keyword">for</span>( i=<span class="hljs-number">0</span>; i&lt;<span class="hljs-number">5</span>; i++ )<br>   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d-th color = %s\n&quot;</span>, i, color[i]);<br><br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="指向指针的指针"><a href="#指向指针的指针" class="headerlink" title="指向指针的指针"></a>指向指针的指针</h3><ul>
+<li><p>定义语法格式：**类型名 ****<strong>指针变量名</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;<br><span class="hljs-type">int</span> *p = &amp;a;<br><span class="hljs-type">int</span> **pp = &amp;p;<br><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>指针数组与二级指针</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">char</span> * color[<span class="hljs-number">5</span>] = &#123; “red”, “blue”, “yellow”, “green”, “black” &#125;;<br><br>数组名color是一指针，指向首元素color[<span class="hljs-number">0</span>]。<br><span class="hljs-type">char</span> **pc = &amp;color[<span class="hljs-number">0</span>] <span class="hljs-comment">/*或者 color */</span><br>指针数组名也是一个二级指针<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\小佛\AppData\Roaming\Typora\typora-user-images\image-20230328114354650.png" srcset="/img/loading.gif" lazyload alt="image-20230328114354650"></p>
+</li>
+<li><p>指针数组与二维数组</p>
+<p>ccolor是一个二维数组</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">char</span> ccolor[][<span class="hljs-number">7</span>] = &#123; “red”, “blue”,<br>    “yellow”, “green”, “black”<br>&#125;;<br><span class="hljs-type">char</span> * pcolor[<span class="hljs-number">5</span>] = &#123; “red”, “blue”,<br>    “yellow”, “green”, “black”<br>&#125;;<br><br></code></pre></td></tr></table></figure>
+
+<p>它的每一行都是一个一维数组</p>
+<ul>
+<li><p><strong>ccolor + i</strong> 是一个指针，指向第i行上的一维数组</p>
+<p><strong>ccolor+i</strong> 类型 “长度为7的一维数组”的指针 </p>
+<p><strong>ccolor[i]</strong> 是一维数组</p>
+</li>
+</ul>
+<p><img src="C:\Users\小佛\AppData\Roaming\Typora\typora-user-images\image-20230328113353092.png" srcset="/img/loading.gif" lazyload alt="image-20230328113353092"></p>
+</li>
+</ul>
+<h3 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h3><ul>
+<li><p>指向函数的指针，定义语法格式：</p>
+<p>  *<em>类型名 (<em>变量名)(参数类型表);</em></em></p>
+<p>例如  *<em>int (<em>funptr)(float, double);</em></em>  </p>
+<p>定义了一个函数指针，它的类型是一个指针，可以存储一个“返回值是int, 有两个分别是float和doulbe参数的函数” 的地址。</p>
+</li>
+<li><p>&#x3D;&#x3D;函数名字本身可以作为函数指针，使用编译器不区分： add 和 &amp;add  、  fp 和 (*fp)&#x3D;&#x3D;</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">add</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span><br>&#123;<br>   <span class="hljs-keyword">return</span> (a+b);<br>&#125;<br><span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>   <span class="hljs-type">int</span> x, y;<br>   <span class="hljs-type">int</span> (*fp)(<span class="hljs-type">int</span>,<span class="hljs-type">int</span>);<br>   fp = add;<br>   fp = &amp;add;<br>   x = fp(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>);<br>   y = (*fp)(<span class="hljs-number">5</span>, x);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>函数指针作为参数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* 用梯形公式计算一个函数的积分 */</span><br><span class="hljs-type">double</span> <span class="hljs-title function_">calc</span><span class="hljs-params">(<span class="hljs-type">double</span> (*fp)(<span class="hljs-type">double</span>),</span><br><span class="hljs-params">            <span class="hljs-type">double</span> a, <span class="hljs-type">double</span> b)</span><br>&#123;<br>   <span class="hljs-type">double</span> z;<br>   z = (b-a)/<span class="hljs-number">2</span> * (fp(a)+fp(b));<br>   <span class="hljs-keyword">return</span> z;<br>&#125;<br><br><span class="hljs-type">double</span> <span class="hljs-title function_">f1</span><span class="hljs-params">(<span class="hljs-type">double</span> x)</span><br>&#123; <br>  <span class="hljs-keyword">return</span> x*x; <br>&#125;<br><br><span class="hljs-type">double</span> <span class="hljs-title function_">f2</span><span class="hljs-params">(<span class="hljs-type">double</span> x)</span><br>&#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-built_in">sin</span>(x)/x; <br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    <span class="hljs-type">double</span> result;<br>    <span class="hljs-type">double</span> (*fp)(<span class="hljs-type">double</span>);<br>    fp = f1;<br>    result = calc(fp, <span class="hljs-number">1</span>,<span class="hljs-number">2</span>);<br>    result = calc(f2, <span class="hljs-number">1</span>,<span class="hljs-number">2</span>);<br>&#125;<br><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="typedef语句进阶"><a href="#typedef语句进阶" class="headerlink" title="typedef语句进阶"></a>typedef语句进阶</h3><ul>
+<li><p>指针类型的typedef语句：</p>
+<ul>
+<li><p><strong>typedef 旧类型名 * 指针类型名;</strong></p>
+</li>
+<li><p>例如：<strong>typedef int * INTP;</strong></p>
+<p>将 INTP 定义为一个整数指针类型。</p>
+<p>以下是等价的： &#x3D;&#x3D;INTP p;    &lt;&#x3D;&gt;   int * p;&#x3D;&#x3D;</p>
+</li>
+</ul>
+</li>
+<li><p>数组类型的typedef语句（注意辨析）</p>
+<ul>
+<li><p><strong>typedef 元素类型名 数组类型名[长度常量];</strong></p>
+</li>
+<li><p>例如：<strong>typedef int IntArray[10];</strong></p>
+<p>将 IntArray 定义为一个长度为10的整数数组类型。</p>
+<p>以下是等价的： &#x3D;&#x3D;int a[10];    &lt;&#x3D;&gt;   IntArray a;&#x3D;&#x3D;</p>
+</li>
+<li><p><em><em>IntArray <em>ap;</em></em>   &#x2F;</em> ap是什么类型变量 *&#x2F;</p>
+<p>ap 是一个指针变量，是数组指针ap 能够指向的类型（简称基类型）是长度为10的数组&#x3D;&#x3D;（数组指针）&#x3D;&#x3D;</p>
+</li>
+<li><p>如果没有用typedef定义IntArray, 如何定义数组指针ap?</p>
+<p>*<em>int (<em>ap)[10];</em></em></p>
+<p>注意和下面定义的区别</p>
+<p>*<em>int <em>ap[10];</em></em>  (这是&#x3D;&#x3D;指针数组&#x3D;&#x3D;)</p>
+</li>
+</ul>
+</li>
+<li><p>写typedef语句的一般方法</p>
+<ul>
+<li>首先定义一个目标类型的变量 <strong>int a[10];</strong></li>
+<li>然后将变量名替换为新类型名 <strong>int IntArray[10];</strong></li>
+<li>最后在前面加上typedef  <strong>typedef int IntArray[10];</strong></li>
+</ul>
+</li>
+<li><p>练习1：输出为：d</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-type">char</span> CA[<span class="hljs-number">5</span>];<br>CA* <span class="hljs-title function_">conv</span><span class="hljs-params">(<span class="hljs-type">char</span> s[])</span><br>&#123;<br>	<span class="hljs-keyword">return</span> (CA*)s;<span class="hljs-comment">//返回指针.</span><br>&#125;<br><span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;      <span class="hljs-type">char</span> h[ ] = “HelloWorld”;<br>	<span class="hljs-built_in">printf</span>(“%c”, conv(h)[<span class="hljs-number">1</span>][<span class="hljs-number">4</span>]);<br>&#125;<br><br><span class="hljs-comment">//思考：不用typedef，怎么写？</span><br><span class="hljs-type">char</span> (*conv)(<span class="hljs-type">char</span> s[])[<span class="hljs-number">5</span>]<br>&#123;<br>	<span class="hljs-keyword">return</span> (<span class="hljs-type">char</span> (*)[<span class="hljs-number">5</span>]) s;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>练习2：将一个长度为100的数组，作为列宽为5的二维数组使用</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    <span class="hljs-type">int</span> a[<span class="hljs-number">100</span>], (*p)[<span class="hljs-number">5</span>], k, j;<br>    p = (<span class="hljs-type">int</span> (*)[<span class="hljs-number">5</span>]) a;<br>    <span class="hljs-keyword">for</span>( k = <span class="hljs-number">0</span>; k&lt;<span class="hljs-number">20</span>; k++ )<br>	<span class="hljs-keyword">for</span>( j = <span class="hljs-number">0</span>; j&lt;<span class="hljs-number">5</span>; j++ )<br>		p[ k ][ j ] = k + j;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>typedef 函数类型</p>
+<p>首先定义一个目标类型的变量 <strong>int f(int a, int b);</strong></p>
+<p>然后将变量名替换为新类型名 <strong>int Func (int a, int b);</strong></p>
+<p>最后在前面加上typedef  <strong>typedef int Func(int a, int b);</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-type">int</span> <span class="hljs-title function_">FuncType</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span>;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">add</span><span class="hljs-params">( <span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span><br>&#123;  <br>	<span class="hljs-keyword">return</span> a + b; <br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    FuncType * fp = add;<br>    <span class="hljs-built_in">printf</span>(“<span class="hljs-number">3</span> + <span class="hljs-number">4</span> = %d\n”, fp(<span class="hljs-number">3</span>,<span class="hljs-number">4</span>));<br>&#125;<br><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>typedef函数指针类型</p>
+<p>首先定义一个目标类型的变量 *<em>int (<em>f)(int a, int b);</em></em></p>
+<p>然后将变量名替换为新类型名 *<em>int (<em>FPtr)(int a, int b);</em></em></p>
+<p>最后在前面加上typedef  *<em>typedef int (<em>FPtr)(int a, int b);</em></em></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-title function_">int</span> <span class="hljs-params">(*FuncPtr)</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span>;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">add</span><span class="hljs-params">( <span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span><br>&#123;  <br><span class="hljs-keyword">return</span> a + b; <br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    FuncPtr fp = add;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;3 + 4 = %d\n&quot;</span>, fp(<span class="hljs-number">3</span>,<span class="hljs-number">4</span>));<br>&#125;<br><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="交互式编程的回调函数"><a href="#交互式编程的回调函数" class="headerlink" title="交互式编程的回调函数"></a>交互式编程的回调函数</h3><ul>
+<li><p>typedef void (*KeyboardEventCallback) (int key, int event);</p>
+<p>typedef void (*CharEventCallback) (char c);</p>
+<p>typedef void (*MouseEventCallback) (int x, int y, int button, int event);</p>
+<p>typedef void (*TimerEventCallback) (int timerID);</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzU1MDE4MzUxNA==&mid=2247486120&idx=1&sn=7c02984156c2c0176c5b15749a229d90&chksm=fba53d9dccd2b48b741524f5c7be3673f239a80c7022fea5daa7929e21f4e005fef8e8b94722&scene=27"><strong>关于交互式编程</strong></a></p>
+</li>
+</ul>
+<h2 id="指针进阶2（1的补充）"><a href="#指针进阶2（1的补充）" class="headerlink" title="指针进阶2（1的补充）"></a>指针进阶2（1的补充）</h2><h3 id="楔子"><a href="#楔子" class="headerlink" title="楔子"></a>楔子</h3><ul>
+<li><p>问题：计算矩阵的行列式。</p>
+<p>编写函数计算一个 NxN 矩阵 A 的行列式，N &lt;&#x3D; 100；</p>
+<p>矩阵 A 可以用一个二维数组表示，a[i] [j]表示第i行、第j列的元素Aij</p>
+</li>
+<li><p>&#x3D;&#x3D;今天我们不关注算法实现&#x3D;&#x3D;</p>
+<p>定义函数的原型<strong>double Det(double a[100] [100], int n);</strong></p>
+<p>函数原型可以等价地写成</p>
+<p><strong>double Det(double a[ ] [100], int n);</strong></p>
+<p>*<em>double Det(double (<em>a)[100], int n);</em></em></p>
+<p>为什么捏？数组到底是什么？</p>
+</li>
+</ul>
+<h3 id="指针的要素"><a href="#指针的要素" class="headerlink" title="指针的要素"></a>指针的要素</h3><ul>
+<li><p>指针的要素：*<em>基类型、地址值 &#x3D;&gt; 类型名 <em>指针变量名</em></em></p>
+<p>int *p1;      p1的基类型是int</p>
+<p>char *p2;     p2的基类型是char</p>
+<p>double *p3;   p2的基类型是double</p>
+<p>double **p4； p4的基类型是double*</p>
+<p>double <em>**p5； p5的基类型是double</em>*</p>
+</li>
+<li><p>使用指针之前，<strong>一定要赋值</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>, s);  <br><span class="hljs-comment">//根据指针s的地址，将读取的字符串存放到内存的相应地方</span><br><span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>，p);<br><span class="hljs-comment">//根据指针p的地址，将读取的整数存放到内存的相应地方(本身即存放数组，故不需要“&amp;”)</span><br>c = <span class="hljs-number">3</span> + *p;<br><span class="hljs-comment">//根据指针p的地址，从内存的相应地方读取一个整数（p的基类型是整数）</span><br><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>指针的基类型与地址值</p>
+<p>指针的加法对地址值的影响：地址值的增量 &#x3D; sizeof(基类型）</p>
+<table>
+<thead>
+<tr>
+<th><strong>定义</strong></th>
+<th><strong>基类型</strong></th>
+<th><strong>p所指向对象的地址（假设）</strong></th>
+<th><strong>p+1指向</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>char *p;</td>
+<td>char (1 byte)</td>
+<td>1000020</td>
+<td>1000021</td>
+</tr>
+<tr>
+<td>short *p;</td>
+<td>short (2 bytes)</td>
+<td>1000040</td>
+<td>1000042</td>
+</tr>
+<tr>
+<td>long *p;</td>
+<td>long (4 bytes)</td>
+<td>1000080</td>
+<td>1000084</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h3 id="指针与数组的关系"><a href="#指针与数组的关系" class="headerlink" title="指针与数组的关系"></a>指针与数组的关系</h3><ul>
+<li><p>理解运算符[]</p>
+<p>以下程序输出什么？</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-type">int</span> a[<span class="hljs-number">5</span>] = &#123;<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">7</span>,<span class="hljs-number">9</span>&#125;,*p = a;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d %d&quot;</span>,a[<span class="hljs-number">3</span>],<span class="hljs-number">3</span>[a]);<br>&#125;<br><br>*运算符 [ ]的意义：x[y] &lt;=&gt; *(x+y)<br>所以 a[<span class="hljs-number">3</span>] &lt;=&gt; *(a+<span class="hljs-number">3</span>) &lt;=&gt; *(<span class="hljs-number">3</span>+a) &lt;=&gt; <span class="hljs-number">3</span>[a]<br>因此，输出是: <span class="hljs-number">7</span> <span class="hljs-number">7</span><br><br>*因为p和a具有相同的地址值，所以 a[i] 和 p[i] 是一样的<br><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>自定义类型 - typedef语句</p>
+<p>typedef命令语法格式（详情见之前的<u>指针进阶1</u>）</p>
+</li>
+<li><p><strong>回答一开始的问题</strong>，为何函数原型可以那样等价写出？</p>
+<ul>
+<li><p><u>作为形式参数 a[ ] 与 *a 等价</u></p>
+</li>
+<li><p>注意一下区别： &#x3D;&#x3D;double *a[100];  	a是（指针）数组&#x3D;&#x3D;</p>
+</li>
+<li><p>&#x3D;&#x3D;double (*b)[100]; 	 b是（数组）指针，即行指针&#x3D;&#x3D;</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="多级指针"><a href="#多级指针" class="headerlink" title="多级指针"></a>多级指针</h3><ul>
+<li><p>思考问题：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;<br><span class="hljs-type">int</span> *p = &amp;a;<br><span class="hljs-type">int</span> **pp = &amp;p;<br><br><span class="hljs-comment">//思考 pp = &amp;(&amp;a); </span><br>不可以！！<br>运算符&amp;取得“操作数”的地址<br>该操作数必须在内存中有对应地址<br><br></code></pre></td></tr></table></figure>
+
+<p>&amp;a变量a的地址值，是一个<u>常量</u><br><u>常量没有地址值</u>，例如5,7,10等等</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c"><br><span class="hljs-type">int</span> a[<span class="hljs-number">5</span>][<span class="hljs-number">10</span>] = &#123; <span class="hljs-number">55</span> &#125;, b = <span class="hljs-number">66</span>；<br><span class="hljs-type">int</span> *p = &amp;b, **pp = &amp;p;<br><br><span class="hljs-comment">//思考 *p是什么？**pp是什么？</span><br>**pp 等于 <span class="hljs-number">66</span><br>思考 pp = a;<br>发生了类型强制转换：行指针(<span class="hljs-type">int</span>[<span class="hljs-number">10</span>]) =&gt; <span class="hljs-type">int</span>**<br>a的地址值 = a[<span class="hljs-number">0</span>]的地址值 = a[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]的地址<br>    <br><span class="hljs-comment">//*pp是什么？等于什么？</span><br>*pp 是 <span class="hljs-type">int</span>*，它的值是 <span class="hljs-number">55</span>；<br>**pp是地址为<span class="hljs-number">55</span>的内存数据（<span class="hljs-number">4</span>个字节作为整数处理）<br>如果执行：<span class="hljs-type">int</span> x = **pp；一般会报错<br><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>一个多级指针程序解析</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">char</span> *c[] = &#123;<span class="hljs-string">&quot;ENTER&quot;</span>, <span class="hljs-string">&quot;NEW&quot;</span>, <span class="hljs-string">&quot;POINT&quot;</span>, <span class="hljs-string">&quot;FIRST&quot;</span>&#125;;<br><span class="hljs-type">char</span> **cp[]= &#123;c+<span class="hljs-number">3</span>, c+<span class="hljs-number">2</span>, c+<span class="hljs-number">1</span>, c&#125;;<br><span class="hljs-type">char</span> ***cpp = cp;<br><span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s&quot;</span>, **++cpp);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s&quot;</span>, *--*++cpp);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s&quot;</span>, *cpp[<span class="hljs-number">-2</span>]+<span class="hljs-number">3</span>);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s\n&quot;</span>, cpp[<span class="hljs-number">-1</span>][<span class="hljs-number">-1</span>]+<span class="hljs-number">1</span>);<br>&#125;<br><br><span class="hljs-comment">//综合结果 POINTENTERSTEW</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\小佛\AppData\Roaming\Typora\typora-user-images\image-20230329151647283.png" srcset="/img/loading.gif" lazyload alt="image-20230329151647283"></p>
+<p><strong>语句printf(“%s”, **++cpp):</strong></p>
+<p><img src="C:\Users\小佛\AppData\Roaming\Typora\typora-user-images\image-20230329163559336.png" srcset="/img/loading.gif" lazyload alt="image-20230329163559336"></p>
+<p>执行情况分析：</p>
+<ul>
+<li>执行++cpp后，cpp指向了cp[1]，此时的*cpp等价于cp[1]，**cpp等价于*cp[1]，也即c[2]（因为此时的cp[1]指向c[2]，如图示）。</li>
+</ul>
+<p>最后打印结果：POINT</p>
+<p><strong>语句printf(“%s”, *–*++cpp)：</strong></p>
+<p><img src="C:\Users\小佛\AppData\Roaming\Typora\typora-user-images\image-20230329163733370.png" srcset="/img/loading.gif" lazyload alt="image-20230329163733370"></p>
+<p>执行情况分析：</p>
+<ul>
+<li>执行++cpp后，cpp指向了cp[2], 此时的*cpp等价于cp[2],， –*cpp等价于–cp[2]，执行后cp[2]指向了c[0]， **cpp等价于c[0]。</li>
+</ul>
+<p>打印结果：ENTER</p>
+<p><strong>语句printf(“%s”, *cpp[-2]+3);</strong></p>
+<p><img src="C:\Users\小佛\AppData\Roaming\Typora\typora-user-images\image-20230329163951295.png" srcset="/img/loading.gif" lazyload alt="image-20230329163951295"></p>
+<p>执行情况分析：</p>
+<ul>
+<li><p>注意，经过了上面两条语句的执行，此时的cpp指向了cp[2]。cpp[-2]等价于*（cpp-2），即cp[0]。</p>
+</li>
+<li><p>&#x3D;&#x3D;*<em>*cpp[-2] &lt;&#x3D;&gt; <em>cp[0] &lt;&#x3D;&gt; c[3] &lt;&#x3D;&gt; 字符串“FIRST”的首地址。</em></em>&#x3D;&#x3D;</p>
+</li>
+<li><p>&#x3D;&#x3D;*<strong>cpp[-2]+3 &lt;&#x3D;&gt; c[3]+3 &lt;&#x3D;&gt; 字符串“ST”的首地址。</strong>&#x3D;&#x3D;</p>
+</li>
+</ul>
+<p>打印结果：ST</p>
+<p><strong>语句printf(“%s\n”, cpp[-1] [-1]+1);</strong> </p>
+<p><img src="C:\Users\小佛\AppData\Roaming\Typora\typora-user-images\image-20230329163951295.png" srcset="/img/loading.gif" lazyload alt="image-20230329163951295"></p>
+<p>执行情况分析：</p>
+<ul>
+<li><p>此时的cpp仍然指向cp[2]。</p>
+</li>
+<li><p>*<em>cpp[-1] [-1] &lt;&#x3D;&gt; (*(cpp-1))[-1] &lt;&#x3D;&gt; (cp[1])[-1] &lt;&#x3D;&gt; <em>(cp[1]-1) &lt;&#x3D;&gt; c[1] &lt;&#x3D;&gt; 字符串“NEW”的首地址。</em></em></p>
+</li>
+<li><p><strong>cpp[-1] [-1]+1 &lt;&#x3D;&gt; c[1]+1 &lt;&#x3D;&gt; “EW”</strong></p>
+</li>
+</ul>
+<p>打印结果：EW</p>
+</li>
+</ul>
+<h3 id="行指针（数组指针）-续"><a href="#行指针（数组指针）-续" class="headerlink" title="行指针（数组指针）[续]"></a>行指针（数组指针）[续]</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span><br><span class="hljs-type">char</span> (*defy(<span class="hljs-type">char</span> *p))[<span class="hljs-number">5</span>]<br>&#123;<br>  <span class="hljs-type">int</span> i;<br>  <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>; i&lt;<span class="hljs-number">3</span>; i++)<br>    p[<span class="hljs-built_in">strlen</span>(p)] = <span class="hljs-string">&#x27;A&#x27;</span>;<br>  <span class="hljs-keyword">return</span> (<span class="hljs-type">char</span>(*)[<span class="hljs-number">5</span>])p+<span class="hljs-number">1</span>;<br>&#125;<br><span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>  <span class="hljs-type">char</span> a[] = <span class="hljs-string">&quot;FROG\ØSEAL\ØLION\ØLAMB&quot;</span>;<br>  <span class="hljs-built_in">puts</span>( defy(a)[<span class="hljs-number">1</span>]+<span class="hljs-number">2</span> );<br>&#125; <br><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>先看函数头:   <strong>char (* defy(char *p)) [5]</strong></p>
+<ul>
+<li><p>按<strong>“<u>从右到左</u>”</strong>，找到defy</p>
+<ul>
+<li>它的右边是()，所以defy是一个函数；</li>
+</ul>
+</li>
+<li><p>该函数有一个参数 char *p；</p>
+</li>
+<li><p>defy左边是 *，表明defy()返回一个指针</p>
+<p>char (* <u>defy(char *p)</u>) [5]</p>
+</li>
+<li><p>假设函数的返回值是 x, 那么x的类型定义是char (*x)[5];</p>
+</li>
+</ul>
+<p>&#x3D;&#x3D;所以，函数的返回值是一个指针，而且是行指针；它的基类型是：长度为5的字符数组&#x3D;&#x3D;</p>
+</li>
+<li><p>如何更清晰地定义函数defy:</p>
+<p>利用<u>typedef命令</u>，程序更清晰</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-type">char</span> CA5[<span class="hljs-number">5</span>];<br><br>CA5 *<span class="hljs-title function_">defy</span><span class="hljs-params">(<span class="hljs-type">char</span> *p)</span><br>&#123;<br>  <span class="hljs-type">int</span> i;<br>  <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>; i&lt;<span class="hljs-number">3</span>; i++)<br>    p[<span class="hljs-built_in">strlen</span>(p)] = <span class="hljs-string">&#x27;A&#x27;</span>;<br>  <span class="hljs-keyword">return</span> (CA5*)p+<span class="hljs-number">1</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>函数defy的返回值:</p>
+<p><strong>return (char (*)[5])p + 1;</strong></p>
+<p>(char (*)[5])是一个强制类型转换</p>
+<ul>
+<li><p>表示目标类型为数组指针（行指针）</p>
+</li>
+<li><p>该指针指向由5个char构成的一维数组。</p>
+</li>
+<li><p>注意这里的*必须用()括起来，强调指针优先</p>
+<ul>
+<li><u><strong>理解的时候可以设想*后面有一个变量p；</strong></u></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>分析defy(a)的执行结果:</p>
+<p><strong>char a[] &#x3D; “FROG\ØSEAL\ØLION\ØLAMB”;</strong></p>
+<p><strong>puts( defy(a)[1]+2 );</strong></p>
+<ul>
+<li><p>先看defy(a)的执行</p>
+<ul>
+<li>将字符串结束符\0变成A</li>
+<li>执行三次</li>
+</ul>
+</li>
+<li><p>再看defy的返回值</p>
+<ul>
+<li>(CA*)p是一个行指针</li>
+<li>(CA*)p+1指向下一行</li>
+<li>即指向： SEALA</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>puts( defy(a)[1]+2 )的实际参数:</p>
+<p>执行defy(a)之后，数组a中数据是</p>
+<p><strong>“FROGASEALALIONALAMB”</strong></p>
+<ul>
+<li><p>defy(a)的返回值是一个行指针</p>
+<p>指向  **<u>S</u>**EALA</p>
+</li>
+<li><p>defy(a)[1]  &lt;&#x3D;&gt;  *(defy(a)+1)   </p>
+<p>defy(a)[1]的类型 CA5</p>
+<ul>
+<li>前面定义：typedef char CA5[5]; (长为5的字符数组)</li>
+<li>defy(a)[1]也是char * 指针。</li>
+</ul>
+</li>
+<li><p>defy(a)[1]+2</p>
+<p>指向  LI<u><strong>O</strong></u>NA</p>
+</li>
+</ul>
+<p>&#x3D;&#x3D;<strong>因此，函数puts的输出是：ONALAMB</strong>&#x3D;&#x3D;</p>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Note/" class="category-chain-item">Note</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/C/">#C</a>
+      
+        <a href="/tags/Note/">#Note</a>
+      
+        <a href="/tags/In-class/">#In-class</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>C大程笔记（part I）</div>
+      <div>http://jiangguanyu.top/2023/03/29/C大程笔记/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Django_Jungle</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年3月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/03/22/hello-world/" title="Hello World">
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
