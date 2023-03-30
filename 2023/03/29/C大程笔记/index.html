@@ -23,21 +23,21 @@
 <meta property="og:site_name" content="Django想乡的乡">
 <meta property="og:description" content="C大程笔记链表链表的定义 存储一批数据：  类型相同 数目不固定、可长可短、动态可变 连续有次序（逻辑上） 在内存中的位置可能是混乱的   用链表存储多项式 1234567struct PolyNode&amp;#123;	int coef&#x2F;&#x2F;系数    int expon&#x2F;&#x2F;指数    struct PolyNode* link&#x2F;&#x2F;链表指针&amp;#125;  链表的分类：单向链表、双向链表  结构的递归定义">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://jiangguanyu.top/img/CPlus/p1.png">
-<meta property="og:image" content="http://jiangguanyu.top/img/CPlus/p2.png">
-<meta property="og:image" content="c:\Users\%E5%B0%8F%E4%BD%9B\AppData\Roaming\Typora\typora-user-images\image-20230329151647283.png">
-<meta property="og:image" content="c:\Users\%E5%B0%8F%E4%BD%9B\AppData\Roaming\Typora\typora-user-images\image-20230329163559336.png">
-<meta property="og:image" content="c:\Users\%E5%B0%8F%E4%BD%9B\AppData\Roaming\Typora\typora-user-images\image-20230329163733370.png">
-<meta property="og:image" content="c:\Users\%E5%B0%8F%E4%BD%9B\AppData\Roaming\Typora\typora-user-images\image-20230329163951295.png">
-<meta property="og:image" content="c:\Users\%E5%B0%8F%E4%BD%9B\AppData\Roaming\Typora\typora-user-images\image-20230329163951295.png">
+<meta property="og:image" content="http://jiangguanyu.top/img/CPlus/1.png">
+<meta property="og:image" content="http://jiangguanyu.top/img/CPlus/2.png">
+<meta property="og:image" content="http://jiangguanyu.top/img/CPlus/3.png">
+<meta property="og:image" content="http://jiangguanyu.top/img/CPlus/4.png">
+<meta property="og:image" content="http://jiangguanyu.top/img/CPlus/5.png">
+<meta property="og:image" content="http://jiangguanyu.top/ages/img/CPlus/6.png">
+<meta property="og:image" content="http://jiangguanyu.top/img/CPlus/6.png">
 <meta property="article:published_time" content="2023-03-28T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-30T01:59:27.777Z">
+<meta property="article:modified_time" content="2023-03-30T02:10:06.238Z">
 <meta property="article:author" content="Django_Jungle">
 <meta property="article:tag" content="C">
 <meta property="article:tag" content="Note">
 <meta property="article:tag" content="In-class">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://jiangguanyu.top/img/CPlus/p1.png">
+<meta name="twitter:image" content="http://jiangguanyu.top/img/CPlus/1.png">
   
   
   
@@ -456,7 +456,7 @@ int *pc = (int *) realloc (p, sizeof(int) *n);
 <li><p>指针数组与二级指针</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">char</span> * color[<span class="hljs-number">5</span>] = &#123; “red”, “blue”, “yellow”, “green”, “black” &#125;;<br><br>数组名color是一指针，指向首元素color[<span class="hljs-number">0</span>]。<br><span class="hljs-type">char</span> **pc = &amp;color[<span class="hljs-number">0</span>] <span class="hljs-comment">/*或者 color */</span><br>指针数组名也是一个二级指针<br><br></code></pre></td></tr></table></figure>
 
-<p><img src="/img/CPlus/p1.png" srcset="/img/loading.gif" lazyload alt="image-20230328114354650"></p>
+<p><img src="/img/CPlus/1.png" srcset="/img/loading.gif" lazyload alt="image-20230328114354650"></p>
 </li>
 <li><p>指针数组与二维数组</p>
 <p>ccolor是一个二维数组</p>
@@ -469,7 +469,7 @@ int *pc = (int *) realloc (p, sizeof(int) *n);
 <p><strong>ccolor[i]</strong> 是一维数组</p>
 </li>
 </ul>
-<p><img src="/img/CPlus/p2.png" srcset="/img/loading.gif" lazyload alt="image-20230328113353092"></p>
+<p><img src="/img/CPlus/2.png" srcset="/img/loading.gif" lazyload alt="image-20230328113353092"></p>
 </li>
 </ul>
 <h3 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h3><ul>
@@ -638,23 +638,22 @@ int *pc = (int *) realloc (p, sizeof(int) *n);
 <li><p>一个多级指针程序解析</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">char</span> *c[] = &#123;<span class="hljs-string">&quot;ENTER&quot;</span>, <span class="hljs-string">&quot;NEW&quot;</span>, <span class="hljs-string">&quot;POINT&quot;</span>, <span class="hljs-string">&quot;FIRST&quot;</span>&#125;;<br><span class="hljs-type">char</span> **cp[]= &#123;c+<span class="hljs-number">3</span>, c+<span class="hljs-number">2</span>, c+<span class="hljs-number">1</span>, c&#125;;<br><span class="hljs-type">char</span> ***cpp = cp;<br><span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s&quot;</span>, **++cpp);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s&quot;</span>, *--*++cpp);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s&quot;</span>, *cpp[<span class="hljs-number">-2</span>]+<span class="hljs-number">3</span>);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s\n&quot;</span>, cpp[<span class="hljs-number">-1</span>][<span class="hljs-number">-1</span>]+<span class="hljs-number">1</span>);<br>&#125;<br><br><span class="hljs-comment">//综合结果 POINTENTERSTEW</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="C:\Users\小佛\AppData\Roaming\Typora\typora-user-images\image-20230329151647283.png" srcset="/img/loading.gif" lazyload alt="image-20230329151647283"></p>
+<p><img src="/img/CPlus/3.png" srcset="/img/loading.gif" lazyload alt="image-20230329151647283"></p>
 <p><strong>语句printf(“%s”, **++cpp):</strong></p>
-<p><img src="C:\Users\小佛\AppData\Roaming\Typora\typora-user-images\image-20230329163559336.png" srcset="/img/loading.gif" lazyload alt="image-20230329163559336"></p>
+<p><img src="/img/CPlus/4.png" srcset="/img/loading.gif" lazyload alt="image-20230329163559336"></p>
 <p>执行情况分析：</p>
 <ul>
 <li>执行++cpp后，cpp指向了cp[1]，此时的*cpp等价于cp[1]，**cpp等价于*cp[1]，也即c[2]（因为此时的cp[1]指向c[2]，如图示）。</li>
 </ul>
 <p>最后打印结果：POINT</p>
 <p><strong>语句printf(“%s”, *–*++cpp)：</strong></p>
-<p><img src="C:\Users\小佛\AppData\Roaming\Typora\typora-user-images\image-20230329163733370.png" srcset="/img/loading.gif" lazyload alt="image-20230329163733370"></p>
-<p>执行情况分析：</p>
+<p><img src="/img/CPlus/5.png" srcset="/img/loading.gif" lazyload alt="image-20230329163733370"><br>执行情况分析：</p>
 <ul>
 <li>执行++cpp后，cpp指向了cp[2], 此时的*cpp等价于cp[2],， –*cpp等价于–cp[2]，执行后cp[2]指向了c[0]， **cpp等价于c[0]。</li>
 </ul>
 <p>打印结果：ENTER</p>
 <p><strong>语句printf(“%s”, *cpp[-2]+3);</strong></p>
-<p><img src="C:\Users\小佛\AppData\Roaming\Typora\typora-user-images\image-20230329163951295.png" srcset="/img/loading.gif" lazyload alt="image-20230329163951295"></p>
+<p><img src="/ages/img/CPlus/6.png" srcset="/img/loading.gif" lazyload alt="image-20230329163951295"></p>
 <p>执行情况分析：</p>
 <ul>
 <li><p>注意，经过了上面两条语句的执行，此时的cpp指向了cp[2]。cpp[-2]等价于*（cpp-2），即cp[0]。</p>
@@ -666,7 +665,7 @@ int *pc = (int *) realloc (p, sizeof(int) *n);
 </ul>
 <p>打印结果：ST</p>
 <p><strong>语句printf(“%s\n”, cpp[-1] [-1]+1);</strong> </p>
-<p><img src="C:\Users\小佛\AppData\Roaming\Typora\typora-user-images\image-20230329163951295.png" srcset="/img/loading.gif" lazyload alt="image-20230329163951295"></p>
+<p><img src="/img/CPlus/6.png" srcset="/img/loading.gif" lazyload alt="image-20230329163951295"></p>
 <p>执行情况分析：</p>
 <ul>
 <li><p>此时的cpp仍然指向cp[2]。</p>
