@@ -23,21 +23,21 @@
 <meta property="og:site_name" content="Django想乡的乡">
 <meta property="og:description" content="C大程笔记链表链表的定义 存储一批数据：  类型相同 数目不固定、可长可短、动态可变 连续有次序（逻辑上） 在内存中的位置可能是混乱的   用链表存储多项式 1234567struct PolyNode&amp;#123;	int coef&#x2F;&#x2F;系数    int expon&#x2F;&#x2F;指数    struct PolyNode* link&#x2F;&#x2F;链表指针&amp;#125;  链表的分类：单向链表、双向链表  结构的递归定义">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="c:\Users\%E5%B0%8F%E4%BD%9B\AppData\Roaming\Typora\typora-user-images\image-20230328114354650.png">
-<meta property="og:image" content="c:\Users\%E5%B0%8F%E4%BD%9B\AppData\Roaming\Typora\typora-user-images\image-20230328113353092.png">
+<meta property="og:image" content="http://jiangguanyu.top/img/CPlus/p1.png">
+<meta property="og:image" content="http://jiangguanyu.top/img/CPlus/p2.png">
 <meta property="og:image" content="c:\Users\%E5%B0%8F%E4%BD%9B\AppData\Roaming\Typora\typora-user-images\image-20230329151647283.png">
 <meta property="og:image" content="c:\Users\%E5%B0%8F%E4%BD%9B\AppData\Roaming\Typora\typora-user-images\image-20230329163559336.png">
 <meta property="og:image" content="c:\Users\%E5%B0%8F%E4%BD%9B\AppData\Roaming\Typora\typora-user-images\image-20230329163733370.png">
 <meta property="og:image" content="c:\Users\%E5%B0%8F%E4%BD%9B\AppData\Roaming\Typora\typora-user-images\image-20230329163951295.png">
 <meta property="og:image" content="c:\Users\%E5%B0%8F%E4%BD%9B\AppData\Roaming\Typora\typora-user-images\image-20230329163951295.png">
 <meta property="article:published_time" content="2023-03-28T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-29T09:36:54.067Z">
+<meta property="article:modified_time" content="2023-03-30T01:59:27.777Z">
 <meta property="article:author" content="Django_Jungle">
 <meta property="article:tag" content="C">
 <meta property="article:tag" content="Note">
 <meta property="article:tag" content="In-class">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="c:\Users\%E5%B0%8F%E4%BD%9B\AppData\Roaming\Typora\typora-user-images\image-20230328114354650.png">
+<meta name="twitter:image" content="http://jiangguanyu.top/img/CPlus/p1.png">
   
   
   
@@ -456,7 +456,7 @@ int *pc = (int *) realloc (p, sizeof(int) *n);
 <li><p>指针数组与二级指针</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">char</span> * color[<span class="hljs-number">5</span>] = &#123; “red”, “blue”, “yellow”, “green”, “black” &#125;;<br><br>数组名color是一指针，指向首元素color[<span class="hljs-number">0</span>]。<br><span class="hljs-type">char</span> **pc = &amp;color[<span class="hljs-number">0</span>] <span class="hljs-comment">/*或者 color */</span><br>指针数组名也是一个二级指针<br><br></code></pre></td></tr></table></figure>
 
-<p><img src="C:\Users\小佛\AppData\Roaming\Typora\typora-user-images\image-20230328114354650.png" srcset="/img/loading.gif" lazyload alt="image-20230328114354650"></p>
+<p><img src="/img/CPlus/p1.png" srcset="/img/loading.gif" lazyload alt="image-20230328114354650"></p>
 </li>
 <li><p>指针数组与二维数组</p>
 <p>ccolor是一个二维数组</p>
@@ -469,7 +469,7 @@ int *pc = (int *) realloc (p, sizeof(int) *n);
 <p><strong>ccolor[i]</strong> 是一维数组</p>
 </li>
 </ul>
-<p><img src="C:\Users\小佛\AppData\Roaming\Typora\typora-user-images\image-20230328113353092.png" srcset="/img/loading.gif" lazyload alt="image-20230328113353092"></p>
+<p><img src="/img/CPlus/p2.png" srcset="/img/loading.gif" lazyload alt="image-20230328113353092"></p>
 </li>
 </ul>
 <h3 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h3><ul>
