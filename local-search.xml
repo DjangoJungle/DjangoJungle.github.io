@@ -4,6 +4,37 @@
   
   
   <entry>
+    <title>Some Important Words and Expression of  Discrete Mathematics and Its Application</title>
+    <link href="/2023/04/02/Some%20Important%20Words%20and%20Expression%20of%20%20Discrete%20Mathematics%20and%20Its%20Application/"/>
+    <url>/2023/04/02/Some%20Important%20Words%20and%20Expression%20of%20%20Discrete%20Mathematics%20and%20Its%20Application/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Some-Important-Words-and-Expression-of-Discrete-Mathematics-and-Its-Application"><a href="#Some-Important-Words-and-Expression-of-Discrete-Mathematics-and-Its-Application" class="headerlink" title="Some Important Words and Expression of  Discrete Mathematics and Its Application"></a>Some Important Words and Expression of  Discrete Mathematics and Its Application</h1><blockquote><p>According to the arrangement of the course DM of Zhejiang University - CSPO, the whole course are taught in English, even if the exam. So it is necessary to remember some basic words and expressions.</p></blockquote><h2 id="Chapter-1"><a href="#Chapter-1" class="headerlink" title="Chapter 1"></a>Chapter 1</h2><h3 id="1-1-1-3"><a href="#1-1-1-3" class="headerlink" title="1.1 - 1.3"></a>1.1 - 1.3</h3><ul><li><p>Atomic Propositon</p></li><li><p>NegationConjunctionDisjunctionInclusive orExclusive orImplication </p></li><li><p>iff - necessary and sufficient </p></li><li><p>ConsitentInconsistent</p></li><li><p>Conjunctive Normal Form(CNF)</p></li><li><p>Disjunctive Normal Form(DNF) </p><p>Full DNF</p></li></ul><h3 id="1-4-1-5"><a href="#1-4-1-5" class="headerlink" title="1.4 - 1.5"></a>1.4 - 1.5</h3><ul><li><p>TantologyContradictionContingencySatisfiabilityParadox</p></li><li><p>Quantification :</p><p>Universal QuantifierDomain ( domain of discourse &#x2F; universe of discourse )</p><p>Existensial Quantifier</p><p>Nested Quantifier </p></li><li><p>Functionally Complete </p></li><li><p>Prenex Normal Form</p></li></ul><h3 id="1-6"><a href="#1-6" class="headerlink" title="1.6"></a>1.6</h3><ul><li>PremsieArgumentFallacy</li><li>Modus Ponens - Affirms</li><li>Syllogism </li><li>Hypothetical ( Hypothesis )</li></ul><h3 id="1-7-1-8"><a href="#1-7-1-8" class="headerlink" title="1.7 - 1.8"></a>1.7 - 1.8</h3><ul><li><p>TheoremAxiomsLemmaPostulateCorollaryConjectureContrapositive</p></li><li><p>Vacuous Proof</p><p>Trivial Proof</p><p>Exhaustive Proof</p><p>Constructive Existence Proof</p><p>Uniqueness Proof ( uniqueness &amp; existence )</p></li></ul><h2 id="Chapter-2"><a href="#Chapter-2" class="headerlink" title="Chapter 2"></a>Chapter 2</h2><h3 id="2-1"><a href="#2-1" class="headerlink" title="2.1"></a>2.1</h3><ul><li><p>set ( element &#x2F; member )</p></li><li><p>Descriptions :</p><p>Roster Method &#x2F; Wenn Diagram &#x2F; Brace Notation with Ellipses &#x2F; Specification Using Set Builder\</p><p>SubsetProper SubsetFinite SetInfinite SetPower Set</p></li><li><p>Cardinality</p></li><li><p>Cartesian ProductsThe Ordered n - Tuple ( 2 - tuple : ordered pairs )</p></li></ul><h3 id="2-2"><a href="#2-2" class="headerlink" title="2.2"></a>2.2</h3><ul><li>Union SetIntersectionDisjoint</li><li>Difference of Two SetsComplement of a SetSummetric Difference</li><li>Universal SetMultiset</li></ul><h3 id="2-3"><a href="#2-3" class="headerlink" title="2.3"></a>2.3</h3><ul><li><p>Function : </p><p>DomainCodomainThe range of</p></li><li><p>One to One Function ( Injection )</p><p>Onto Functions ( Surjection )</p><p>One to One Correspondence Functions ( Bijection )</p></li><li><p>Monotomic Function    Inverse Function</p><p>Floor Function    Ceiling function</p></li></ul><h3 id="2-4"><a href="#2-4" class="headerlink" title="2.4"></a>2.4</h3><ul><li>Geometric Progression    Arithmetic Progression</li><li>Summations</li><li>Recurrence Relations</li></ul><h3 id="2-5"><a href="#2-5" class="headerlink" title="2.5"></a>2.5</h3><ul><li>Aleph - null</li><li>Countable    Uncountable    Countably Infinite</li><li>Cantor Diagonalization Argument</li><li>Aleph - one : Cardinality of  Continuum</li></ul><h2 id="Particular-Noun"><a href="#Particular-Noun" class="headerlink" title="Particular Noun"></a>Particular Noun</h2><ul><li>Precedence</li><li>Terminology</li><li>counterexample</li></ul><h2 id="Adverb-amp-Adjective-amp-Conjunction"><a href="#Adverb-amp-Adjective-amp-Conjunction" class="headerlink" title="Adverb &amp; Adjective &amp; Conjunction"></a>Adverb &amp; Adjective &amp; Conjunction</h2><ul><li>Biconditonal</li><li>Successively</li><li>Hence</li><li>Vacuously</li><li>Divisible</li><li>Consecutive</li><li>Composite</li><li>Respectively</li><li>Simultaneously</li><li>Persumably</li><li>Decimal</li><li>Explicit</li></ul><h2 id="Experssions"><a href="#Experssions" class="headerlink" title="Experssions"></a>Experssions</h2><ul><li>… show that …</li><li>let … denote …</li><li>for arbitrary …</li><li>introduce …</li><li>note that …</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>Note</category>
+      
+      <category>Mathematics</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>DM</tag>
+      
+      <tag>Note</tag>
+      
+      <tag>In-class</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>C大程笔记（part I）</title>
     <link href="/2023/03/29/C%E5%A4%A7%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
     <url>/2023/03/29/C%E5%A4%A7%E7%A8%8B%E7%AC%94%E8%AE%B0/</url>
@@ -20,11 +51,11 @@
     
     <tags>
       
-      <tag>C</tag>
-      
       <tag>Note</tag>
       
       <tag>In-class</tag>
+      
+      <tag>C</tag>
       
     </tags>
     
