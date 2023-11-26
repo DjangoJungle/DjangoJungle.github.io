@@ -16,12 +16,12 @@
   <meta name="author" content="Django_Jungle">
   <meta name="keywords" content="">
   
-    <meta name="description" content="tle: Stable D署、训练和使用_蒋官语date: 2023-05-29categories:  Stabl的部署、训练和使用 AI图像生成最近所展现出的潜力可谓是让人大开眼界，它能够从一些简单的文字描述开始，变魔法一般的变出高质量的图片。不用说，这已然深刻的拓宽了人类创作艺术的方式。 而其中，Stable Diffusion的公布算是一个里程碑事件了，它的开源不仅仅意味着面向大众群体公开">
+    <meta name="description" content="Stable Diffusion的部署、训练和使用 AI图像生成最近所展现出的潜力可谓是让人大开眼界，它能够从一些简单的文字描述开始，变魔法一般的变出高质量的图片。不用说，这已然深刻的拓宽了人类创作艺术的方式。 而其中，Stable Diffusion的公布算是一个里程碑事件了，它的开源不仅仅意味着面向大众群体公开了一个极高质量的模型，与此同时这个模型甚至能保持很快的运行速度和较低的显存需求。 本">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Django想乡的乡">
-<meta property="og:url" content="http://jiangguanyu.top/2023/11/26/Stable%20Diffusion%E7%9A%84%E9%83%A8%E7%BD%B2%E3%80%81%E8%AE%AD%E7%BB%83%E5%92%8C%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:title" content="Stable Diffusion的部署、训练和使用">
+<meta property="og:url" content="http://jiangguanyu.top/2023/05/19/Stable%20Diffusion%E7%9A%84%E9%83%A8%E7%BD%B2%E3%80%81%E8%AE%AD%E7%BB%83%E5%92%8C%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="Django想乡的乡">
-<meta property="og:description" content="tle: Stable D署、训练和使用_蒋官语date: 2023-05-29categories:  Stabl的部署、训练和使用 AI图像生成最近所展现出的潜力可谓是让人大开眼界，它能够从一些简单的文字描述开始，变魔法一般的变出高质量的图片。不用说，这已然深刻的拓宽了人类创作艺术的方式。 而其中，Stable Diffusion的公布算是一个里程碑事件了，它的开源不仅仅意味着面向大众群体公开">
+<meta property="og:description" content="Stable Diffusion的部署、训练和使用 AI图像生成最近所展现出的潜力可谓是让人大开眼界，它能够从一些简单的文字描述开始，变魔法一般的变出高质量的图片。不用说，这已然深刻的拓宽了人类创作艺术的方式。 而其中，Stable Diffusion的公布算是一个里程碑事件了，它的开源不仅仅意味着面向大众群体公开了一个极高质量的模型，与此同时这个模型甚至能保持很快的运行速度和较低的显存需求。 本">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://jiangguanyu.top/img/Stable/image-20231126143927040.png">
 <meta property="og:image" content="http://jiangguanyu.top/img/Stable/image-20231126143933993.png">
@@ -46,15 +46,18 @@
 <meta property="og:image" content="http://jiangguanyu.top/img/Stable/image-20231126142556420.png">
 <meta property="og:image" content="http://jiangguanyu.top/img/Stable/image-20231126142602987.png">
 <meta property="og:image" content="http://jiangguanyu.top/img/Stable/image-20231126142618612.png">
-<meta property="article:published_time" content="2023-11-26T06:45:42.948Z">
-<meta property="article:modified_time" content="2023-11-26T07:10:05.204Z">
+<meta property="article:published_time" content="2023-05-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-11-26T07:19:02.572Z">
 <meta property="article:author" content="Django_Jungle">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="LLM">
+<meta property="article:tag" content="Stable Diffusion">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://jiangguanyu.top/img/Stable/image-20231126143927040.png">
   
   
   
-  <title>Django想乡的乡</title>
+  <title>Stable Diffusion的部署、训练和使用 - Django想乡的乡</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -220,7 +223,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="Stable Diffusion的部署、训练和使用"></span>
           
         </div>
 
@@ -231,8 +234,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-11-26 14:45" pubdate>
-          2023年11月26日 下午
+        <time datetime="2023-05-19 00:00" pubdate>
+          2023年5月19日 凌晨
         </time>
       </span>
     
@@ -243,7 +246,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.1k 字
+          3k 字
         
       </span>
     
@@ -292,14 +295,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none"></h1>
+            <h1 style="display: none">Stable Diffusion的部署、训练和使用</h1>
             
             
               <div class="markdown-body">
                 
-                <p>tle: Stable D署、训练和使用_蒋官语<br>date: 2023-05-29<br>categories:</p>
-<hr>
-<h1 id="Stabl的部署、训练和使用"><a href="#Stabl的部署、训练和使用" class="headerlink" title="Stabl的部署、训练和使用"></a>Stabl的部署、训练和使用</h1><blockquote>
+                <h1 id="Stable-Diffusion的部署、训练和使用"><a href="#Stable-Diffusion的部署、训练和使用" class="headerlink" title="Stable Diffusion的部署、训练和使用"></a>Stable Diffusion的部署、训练和使用</h1><blockquote>
 <p>AI图像生成最近所展现出的潜力可谓是让人大开眼界，它能够从一些简单的文字描述开始，变魔法一般的变出高质量的图片。不用说，这已然深刻的拓宽了人类创作艺术的方式。</p>
 <p>而其中，Stable Diffusion的公布算是一个里程碑事件了，它的开源不仅仅意味着面向大众群体公开了一个极高质量的模型，与此同时这个模型甚至能保持很快的运行速度和较低的显存需求。</p>
 <p>本实践借助Stable Diffusion整合的webUI界面以及云平台，通过实际部署、调试、使用，具体切实地感受影响图像生成的因素以及相关的机理。</p>
@@ -440,6 +441,38 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Lab/" class="category-chain-item">Lab</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/AI/">#AI</a>
+      
+        <a href="/tags/LLM/">#LLM</a>
+      
+        <a href="/tags/Stable-Diffusion/">#Stable Diffusion</a>
+      
+    </div>
   
 </div>
 
@@ -449,8 +482,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
-      <div>http://jiangguanyu.top/2023/11/26/Stable Diffusion的部署、训练和使用/</div>
+      <div>Stable Diffusion的部署、训练和使用</div>
+      <div>http://jiangguanyu.top/2023/05/19/Stable Diffusion的部署、训练和使用/</div>
     </div>
     <div class="license-meta">
       
@@ -462,7 +495,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年11月26日</div>
+          <div>2023年5月19日</div>
         </div>
       
       
