@@ -9,9 +9,8 @@ redirect_from:
 
 Welcome!
 
-I am a third year undergraduate student from [College of Computer Science and Technology, Zhejiang University](http://www.en.cs.zju.edu.cn/). My research interest includes LLM reasoning, Information (Text/Table/Image...) representation for AI. In a simple sentence, my ambition is to let AI know more, then help us know more.
+I am a third-year undergraduate student at the [College of Computer Science and Technology, Zhejiang University](http://www.en.cs.zju.edu.cn/). My research interests lie in LLM reasoning and information representation (text, tables, images, etc.) for AI. In simple terms, my ambition is to enable AI to understand more, so it can, in turn, help us gain deeper insights.
 
-In the process of my gradual growth in the field of research, I was lucky enough to be guided by excellent and kind seniors. In the college, I am a research intern in [SuDIS Lab, Zhejiang University](https://sudis-zju.github.io/en/), adivised by [Prof.Huan Li](https://longaspire.github.io/). From last semester, I begin working with [TMLR Group, HKBU](), collaborate with [Dr.Zhou Zhanke]() and [Dr.Xiao Feng]().
+Throughout my journey in research, I’ve been fortunate to receive guidance from exceptional and supportive mentors. At Zhejiang University, I am a research intern at [SuDIS Lab](https://sudis-zju.github.io/en/), under the supervision of [Prof. Huan Li](https://longaspire.github.io/). Since last semester, I have also been collaborating with the [TMLR Group, HKBU](https://github.com/tmlr-group), working alongside [Dr. Zhou Zhanke]() and [Dr. Xiao Feng]().
 
 You can find my CV here:
-
