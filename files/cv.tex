@@ -1,0 +1,157 @@
+% !TEX program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !Mode:: "TeX:UTF-8"
+
+\documentclass{resume} % 使用自定义的 resume.cls 样式文件
+\usepackage[dvipsnames]{xcolor}
+\usepackage{hyperref}
+\usepackage[backend=biber, style=ieee, sorting=none]{biblatex}
+\addbibresource{references.bib} % 引入参考文献文件
+
+\usepackage[left=0.75in,top=0.6in,right=0.75in,bottom=0.6in]{geometry} % 调整页边距
+
+% --- 自定义信息 ---
+\name{Guanyu Jiang} % 您的名字
+
+% 定义主题颜色
+\definecolor{ZJUBlue}{RGB}{0, 83, 159}
+% *** 新增：定义实体颜色 (例如：组织、项目、人名) ***
+\definecolor{EntityColor}{RGB}{140, 21, 21} % 使用一个深红色
+
+% *** 新增：一个用于给实体上色的命令 ***
+\newcommand{\entitycolor}[1]{{\color{EntityColor}#1}}
+
+% 联系方式与链接
+\address{Homepage: \href{https://djangojungle.github.io}{\texttt{djangojungle.github.io}}}
+\address{Github: \href{https://github.com/DjangoJungle}{\texttt{https://github.com/DjangoJungle}}}
+\address{
+% \href{https://github.com/djangojungle}{GitHub} \\
+% \href{https://scholar.google.com/your-profile}{Google Scholar} \\ % 取消注释并替换链接
+% \href{https://www.linkedin.com/in/your-profile/}{LinkedIn} % 取消注释并替换链接
+}
+\address{Phone: (+86) 150-132-30805 \\ Email: \texttt{django040805@zju.edu.cn}}
+
+% --- 重新定义分区样式 ---
+% *** 修改：将分区标题加粗 ***
+\renewenvironment{rSection}[1]{
+  \sectionskip
+  \textcolor{ZJUBlue}{\bfseries\MakeUppercase{#1}} % 将标题设置为粗体
+  \sectionlineskip
+  \hrule
+  \begin{list}{}{
+    \setlength{\leftmargin}{1.5em}
+  }
+  \item[]
+}{
+  \end{list}
+}
+
+% --- 正文开始 ---
+\begin{document}
+
+\begin{rSection}{Education}
+  {\bf \entitycolor{Zhejiang University (ZJU), College of Computer Science and Technology (CST)}}, Hangzhou
+  \\ Bachelor's degree in progress \hfill {\em Sep 2022 -- Jun 2026 (Expected)}
+  \\ GPA: 3.72/4.0
+
+  {\bf \entitycolor{The Affiliated High School of SCNU}}, Guangzhou
+  \\ High School Diploma \hfill {\em Sep 2019 -- Jun 2022}
+  \\ Outstanding Graduate
+\end{rSection}
+
+
+
+\begin{rSection}{Research Interests}
+  \begin{rSubsection}{My research focuses on trustworthy machine reasoning with Large Language Models (LLM) and multimodal Large Language Models (MLLM). My work aims to advance these areas:}{}{}{}
+    \item Post-training for AI alignment.
+    \item Tool-augmented reasoning for foundation model.
+    \item Multimodal information representation (text, tables, images, etc.) for general AI system.
+  \end{rSubsection}
+\end{rSection}
+
+
+
+% *** 修改：将聚集的作者名合并到一个 \entitycolor{} 中 ***
+\begin{rSection}{Publications}
+  
+  \textbf{\entitycolor{Med-Evolve: A Self-Evolving Framework for Retrieval-Augmented Medical Reasoning}} \\
+  \underline{\textbf{Guanyu Jiang}}, Zhibin Zhang \hfill {\em Under Review at {\bf AAAI 2026}}
+  
+  \textbf{\entitycolor{TableCopilot: A Table Assistant Empowered by Natural Language Conditional Table Discovery}} \hfill {\em Accepted by {\bf VLDB 2025}} \\
+  Lingxi Cui, \underline{\textbf{Guanyu Jiang}}, Huan Li, Ke Chen, Lidan Shou, Gang Chen
+  
+\end{rSection}
+
+
+
+% *** 修改：将聚集的导师名和机构名合并到一个 \entitycolor{} 中 ***
+\begin{rSection}{Research Experience}
+
+  \begin{rSubsection}{\entitycolor{Ren.AI Lab @ Hong Kong University of Science and Technology \\ (HKUST-Ren.AI)}}{May 2025 -- Present}{Research intern, advised by \entitycolor{Prof. Yi R. (May) Fung}}{}
+    \item Currently working on {\bf improving efficient adaptive reasoning ability of MLLM, under the paradigm of ``Thinking with Images"}.
+  \end{rSubsection}
+  
+  \begin{rSubsection}{\entitycolor{Trustworthy Machine Learning and Reasoning Group @ Hong Kong Baptist University \\ (HKBU-TMLR)}}{Nov 2024 -- Present}{Research intern, advised by \entitycolor{Dr. Zhanke Zhou, Dr. Xiao Feng, and Prof. Bo Han}}{}
+    \item Currently working on { \bf reward modeling and building RL-based optimization algorithm (system) for LLM tool-augmented reasoning}.
+  \end{rSubsection}
+
+  \begin{rSubsection}{\entitycolor{Sustainable Data Intelligence and Data Systems Research Group @ Zhejiang University \\ (ZJU-SuDIS)}}{May 2024 -- Mar 2025}{Research intern, advised by \entitycolor{Prof. Huan Li, Dr. Lingxi Cui}}{}
+    \item Proposed a novel task formulation and { \bf developed a state-of-the-art LLM-based algorithm for table discovery}.
+    \item This research led to a publication accepted by {\bf VLDB 2025}.
+  \end{rSubsection}
+  
+\end{rSection}
+
+
+
+% *** ***
+\begin{rSection}{Industry \& Project Experience}
+  \begin{rSubsection}{\entitycolor{Structure-Guided Image Generation (Tencent HunyuanDiT)}}{Jul 2024 -- Oct 2024}{Project intern, advised by \entitycolor{Researcher Zhimin Li, and Researcher Xinlu Lai}}{}
+    \item Enhanced the architecture for structure-guided image generation by introducing a VLM with ControlNet training solution, receiving the \textbf{Tencent Outstanding Student Award} for contributions.
+  \end{rSubsection}
+
+  \begin{rSubsection}{\entitycolor{Cloud-on-Cloud Community (National University of Singapore)}}{Jun 2024 -- Jul 2024}{Visiting student, Advised by \entitycolor{Prof. Richard T.B. Ma}}{}
+    \item Developed a meteorological platform on Kubernetes with real-time big data streaming on time series model system, earning \textbf{Rank 2} in the workshop.
+  \end{rSubsection}
+\end{rSection}
+
+
+
+\begin{rSection}{Honors \& Awards} \itemsep -2pt
+  {Tencent Outstanding Student from "Xiniu Niao" Scholarship, Tencent}\hfill {\em Oct 2024} \\
+  {Second Place, Cloud Computing \& Big Data Track, NUS SoC Workshop}\hfill {\em Jul 2024} \\
+  {Silver Award, Zhejiang "Internet+" Innovation and Entrepreneurship Competition}\hfill {\em Sep 2023} \\
+  {Excellent Student in Innovation and Entrepreneurship, Zhejiang University}\hfill {\em Jun 2023} \\
+  {Excellent Student in External Communication, Zhejiang University}\hfill {\em Jun 2023} \\
+\end{rSection}
+
+
+
+\begin{rSection}{Languages} \itemsep -2pt
+  \begin{tabular}{ @{} >{\bfseries}l @{\hspace{6ex}} l }
+    English & Fluent (IELTS 7.0) \\
+    Cantonese & Conversational \\
+    Mandarin & Native \\
+  \end{tabular}
+\end{rSection}
+
+
+
+\begin{rSection}{Skills} \itemsep -2pt
+  \begin{tabular}{ @{} >{\bfseries}l @{\hspace{6ex}} l }
+    Programming Languages & Python, C/C++, Java, JavaScript \\
+    Frameworks \& Libraries &  SGLang, vLLM, veRL, PyTorch \\
+    Developer Tools & Git, Shell, Linux Utilities, Kubernetes, LaTeX \\
+  \end{tabular}
+\end{rSection}
+
+
+
+\begin{rSection}{Leadership \& Service} \itemsep -2pt
+  {2025 Reviewer of AAAI2026} \\
+  {2024 - 2025  Deputy Secretary, Youth League Committee of Yunfeng, ZJU} \\
+  {2024 - 2025  Member, "Qizhen Wenxue" Talent Researcher Program, ZJU} \\
+  {2023 Volunteer, 19th Asian Games in Hangzhou}
+\end{rSection}
+
+\end{document}
